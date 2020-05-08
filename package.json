@@ -1,0 +1,28 @@
+{
+  "name": "node-api1-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavo-yepez/node-api1-project.git"
+  },
+  "license": "MIT",
+  "description": "## Topics",
+  "bugs": {
+    "url": "https://github.com/gustavo-yepez/node-api1-project/issues"
+  },
+  "homepage": "https://github.com/gustavo-yepez/node-api1-project#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gitignore": "^0.6.0",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
