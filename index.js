@@ -20,7 +20,7 @@ server.post('/api/hubs',(req, res) => {
     const hubInfo = req.body;
     console.log(hubInfo);
 
-    hibInfo.id = shortid.generate();
+    hubInfo.id = shortid.generate();
     hubs.push(hubInfo);
 
     res.status(201).json(hubInfo);
@@ -29,19 +29,19 @@ server.post('/api/hubs',(req, res) => {
 //----------
 //Read
 //--------------
-server.get('/api/hubs', (requ, res) => {
+server.get('/api/hubs', (req, res) => {
     res.status(200).json(hubs);
 })
 
 //-------
 //Delete
 //----------
-server.delete ('/api/hubs/id', (req, res) =>{
+server.delete ('/api/hubs/:id', (req, res) =>{
     const {id} = req.params;
 
-    const found = req.fin(hub => hub.id === id);
+    const deleted = hubs.find(hub => hub.id === id);
 
-    if (found){
+    if (deleted){
         hubs = hubs.filter(hub => hub.id === id);
         res.status(200).json({message: 'deleted'});
     } else {
@@ -50,6 +50,8 @@ server.delete ('/api/hubs/id', (req, res) =>{
 
     console.log(id);
 });
+
+
 
 //--------
 //update - patch
@@ -75,14 +77,14 @@ server.patch ('/api/hubs/:id', (req, res) => {
 // update - put 
 //------------
 
-server.put ('/api/hubs/id', (req, res) => {
+server.put ('/api/hubs/:id', (req, res) => {
     const {id} = req.params;
     const changes = req.body;
+    changes.id = id;
 
-    let found = hubs.findIndex(hub => hub.id === id);
+    let index = hubs.findIndex(hub => hub.id === id);
 
     if (index !== -1) {
-        changes.id = id;
         hubs[index] = changes;
         res.status(200).json(hubs[index]);
     }
@@ -98,7 +100,7 @@ server.put ('/api/hubs/id', (req, res) => {
 const PORT = 5000;
 
 server.listen(PORT, () => {
-    console.log('listening on http://localhost:${PORT}')
+    console.log(`listening on http://localhost:${PORT}`)
 });
 
 function newFunction(found, changes, res) {
